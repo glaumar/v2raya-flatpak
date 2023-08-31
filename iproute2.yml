@@ -1,0 +1,10 @@
+  name: iproute2
+  buildsystem: autotools
+  make-install-args:
+    - PREFIX=${FLATPAK_DEST}
+    - CONFDIR=${FLATPAK_DEST}/share/iproute2
+    - SBINDIR=${FLATPAK_DEST}/bin
+  sources:
+    - type: archive
+      url: https://git.kernel.org/pub/scm/network/iproute2/iproute2.git/snapshot/iproute2-6.4.0.tar.gz
+      sha256: 5a353b029575bd6084b098a1ae8c1ff0de47ad1ba71b25914379d8552eea0f23

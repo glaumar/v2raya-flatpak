@@ -1,0 +1,48 @@
+app-id: io.github.glaumar.v2raya-deck
+runtime: org.freedesktop.Platform
+runtime-version: "22.08"
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node18
+  - org.freedesktop.Sdk.Extension.golang
+command: run-v2raya.sh
+finish-args:
+  - --share=network
+  - --socket=session-bus
+build-options:
+  append-path: /usr/lib/sdk/node18/bin:/usr/lib/sdk/golang/bin
+  build-args:
+    - --share=network
+modules:
+  - name: link-sbin
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/bin
+      - ln -sf ${FLATPAK_DEST}/bin ${FLATPAK_DEST}/sbin
+  - iptables.yml
+  - iproute2.yml
+  - v2ray-core.yml
+  - name: v2raya
+    buildsystem: simple
+    build-commands:
+      - sh build.sh
+      - install -Dm 755 v2raya ${FLATPAK_DEST}/bin/v2raya
+      - install -Dm 644 gui/public/img/icons/android-chrome-512x512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512${FLATPAK_DEST}s/io.github.glaumar.v2raya-deck.png
+      - install -Dm 644 gui/public/img/icons/android-chrome-192x192.png ${FLATPAK_DEST}/share/icons/hicolor/192x192${FLATPAK_DEST}s/io.github.glaumar.v2raya-deck.png
+      - install -Dm 644 gui/public/img/icons/favicon-32x32.png ${FLATPAK_DEST}/share/icons/hicolor/32x32${FLATPAK_DEST}s/io.github.glaumar.v2raya-deck.png
+      - install -Dm 644 gui/public/img/icons/favicon-16x16.png ${FLATPAK_DEST}/share/icons/hicolor/16x16${FLATPAK_DEST}s/io.github.glaumar.v2raya-deck.png
+    sources:
+      - type: archive
+        url: https://github.com/v2rayA/v2rayA/archive/refs/tags/v2.2.1.tar.gz
+        sha256: 97ae3d41ddd649dd07cfecf2bbe06a513d71186ef2620ca44af12e7956be5650
+
+  - name: run-v2raya
+    buildsystem: simple
+    build-commands:
+      - install -Dm 755 run-v2raya.sh ${FLATPAK_DEST}/bin/run-v2raya.sh
+      - install -Dm 644 io.github.glaumar.v2raya-deck.desktop ${FLATPAK_DEST}/share/applications/io.github.glaumar.v2raya-deck.desktop
+    sources:
+      - type: file
+        path: run-v2raya.sh
+      - type: file
+        path: io.github.glaumar.v2raya-deck.desktop

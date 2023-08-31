@@ -1,0 +1,28 @@
+name: v2ray-core
+buildsystem: simple
+build-commands:
+  - go mod download
+  - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o v2ray -trimpath -ldflags "-s -w -buildid=" ./main
+  - install -Dm 755 v2ray -t ${FLATPAK_DEST}/bin/
+sources:
+  - type: git
+    url: https://github.com/v2fly/v2ray-core.git
+    # tag: v5.7.0
+
+modules:
+  - name: v2ray-geoip
+    buildsystem: simple
+    build-commands:
+      - install -Dm 644 geoip.dat ${FLATPAK_DEST}/share/v2ray/geoip.dat
+    sources:
+      - type: file
+        url: https://github.com/v2fly/geoip/releases/download/202308240036/geoip.dat
+        sha256: 1982be239f54a97d26803bd8892365cb27af27a63256e85293f159f77ef49273
+  - name: v2ray-domain-list-community
+    buildsystem: simple
+    build-commands:
+      - install -Dm 644 dlc.dat ${FLATPAK_DEST}/share/v2ray/geosite.dat
+    sources:
+      - type: file
+        url: https://github.com/v2fly/domain-list-community/releases/download/20230825070717/dlc.dat
+        sha256: 231a6fb4915f7652ad9b2027965fbbb27435ffa9b3a0734ad2b69693e95d6604

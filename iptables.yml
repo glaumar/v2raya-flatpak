@@ -1,0 +1,30 @@
+name: iptables
+buildsystem: autotools
+make-install-args:
+  - PREFIX=${FLATPAK_DEST}
+  - CONFDIR=${FLATPAK_DEST}/share/iptables
+  - SBINDIR=${FLATPAK_DEST}/bin
+sources:
+  - type: archive
+    url: https://www.netfilter.org/projects/iptables/files/iptables-1.8.9.tar.xz
+    sha256: ef6639a43be8325a4f8ea68123ffac236cb696e8c78501b64e8106afb008c87f
+  
+modules: 
+  - name: libnfnetlink
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://www.netfilter.org/projects/libnfnetlink/files/libnfnetlink-1.0.2.tar.bz2
+        sha256: b064c7c3d426efb4786e60a8e6859b82ee2f2c5e49ffeea640cfe4fe33cbc376 
+  - name: libmnl
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://www.netfilter.org/projects/libmnl/files/libmnl-1.0.5.tar.bz2
+        sha256: 274b9b919ef3152bfb3da3a13c950dd60d6e2bcd54230ffeca298d03b40d0525
+  - name: libnftnl
+    buildsystem: autotools
+    sources:
+      - type: archive
+        url: https://netfilter.org/projects/libnftnl/files/libnftnl-1.2.6.tar.xz
+        sha256: ceeaea2cd92147da19f13a35a7f1a4bc2767ff897e838e4b479cf54b59c777f4
