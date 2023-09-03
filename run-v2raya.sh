@@ -10,7 +10,10 @@ v2raya_is_running() {
 if [ $USER = root ] ; then
     v2raya -c $XDG_CONFIG_HOME/v2raya -a "$address" --log-file $XDG_CACHE_HOME/v2raya/v2raya.log
 elif ! v2raya_is_running; then
-    flatpak-spawn --host pkexec flatpak run --env=V2RAYA_ADDRESS="$address" io.github.glaumar.v2raya-deck &
+    # run v2raya with root
+    flatpak-spawn --host pkexec flatpak run --env=V2RAYA_ADDRESS="$address" io.github.glaumar.v2raya_flatpak &
+
+    # wait v2raya start
     while ! v2raya_is_running; do
         sleep 1
     done

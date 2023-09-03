@@ -1,0 +1,57 @@
+app-id: io.github.glaumar.v2raya_flatpak
+runtime: org.freedesktop.Platform
+runtime-version: "22.08"
+sdk: org.freedesktop.Sdk
+sdk-extensions:
+  - org.freedesktop.Sdk.Extension.node18
+  - org.freedesktop.Sdk.Extension.golang
+command: run-v2raya.sh
+finish-args:
+  - --share=network
+  - --socket=session-bus
+build-options:
+  append-path: /usr/lib/sdk/node18/bin:/usr/lib/sdk/golang/bin
+  build-args:
+    - --share=network
+modules:
+  - name: link-sbin
+    buildsystem: simple
+    build-commands:
+      - mkdir -p ${FLATPAK_DEST}/bin
+      - ln -sf ${FLATPAK_DEST}/bin ${FLATPAK_DEST}/sbin
+  - iptables.yml
+  - iproute2.yml
+  - v2ray-core.yml
+  - name: v2raya
+    buildsystem: simple
+    build-commands:
+      - sh build.sh
+      - install -Dm 755 v2raya ${FLATPAK_DEST}/bin/v2raya
+      - install -Dm 644 gui/public/img/icons/android-chrome-512x512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512${FLATPAK_DEST}s/io.github.glaumar.v2raya_flatpak.png
+      - install -Dm 644 gui/public/img/icons/android-chrome-192x192.png ${FLATPAK_DEST}/share/icons/hicolor/192x192${FLATPAK_DEST}s/io.github.glaumar.v2raya_flatpak.png
+      - install -Dm 644 gui/public/img/icons/favicon-32x32.png ${FLATPAK_DEST}/share/icons/hicolor/32x32${FLATPAK_DEST}s/io.github.glaumar.v2raya_flatpak.png
+      - install -Dm 644 gui/public/img/icons/favicon-16x16.png ${FLATPAK_DEST}/share/icons/hicolor/16x16${FLATPAK_DEST}s/io.github.glaumar.v2raya_flatpak.png
+    sources:
+      - type: archive
+        url: https://github.com/v2rayA/v2rayA/archive/refs/tags/v2.2.3.tar.gz
+        sha256: 44f6d1f6ed7a03c1ec928b6551c8544463491c9fc53142f57aabbc534f104e56
+
+  - name: run-v2raya
+    buildsystem: simple
+    build-commands:
+      - install -Dm 755 run-v2raya.sh ${FLATPAK_DEST}/bin/run-v2raya.sh
+      - install -Dm 755 create-v2raya-service.sh  ${FLATPAK_DEST}/bin/create-v2raya-service.sh
+      - install -Dm 755 remove-v2raya-service.sh  ${FLATPAK_DEST}/bin/remove-v2raya-service.sh
+      - install -Dm 644 io.github.glaumar.v2raya_flatpak.desktop ${FLATPAK_DEST}/share/applications/io.github.glaumar.v2raya_flatpak.desktop
+      - install -Dm 644 io.github.glaumar.v2raya_flatpak.metainfo.xml ${FLATPAK_DEST}/share/metainfo/io.github.glaumar.v2raya_flatpak.metainfo.xml
+    sources:
+      - type: file
+        path: run-v2raya.sh
+      - type: file
+        path: create-v2raya-service.sh
+      - type: file
+        path: remove-v2raya-service.sh
+      - type: file
+        path: io.github.glaumar.v2raya_flatpak.desktop
+      - type: file
+        path: io.github.glaumar.v2raya_flatpak.metainfo.xml

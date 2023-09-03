@@ -4,19 +4,25 @@
 		{
 			"type": "shell",
 			"label": "Flatpak Build",
-			"command": "flatpak-builder build_flatpak  io.github.glaumar.v2raya-deck.yml --force-clean",
+			"command": "flatpak-builder build_flatpak  io.github.glaumar.v2raya_flatpak.yml --force-clean",
 			"group": "build"
 		},
-		{
-			"type": "shell",
-			"label": "Flatpak Install",
-			"command": "flatpak-builder build_flatpak  io.github.glaumar.v2raya-deck.yml --force-clean --install --user",
-			"group": "build"
-		},
+		// {
+		// 	"type": "shell",
+		// 	"label": "Flatpak Install",
+		// 	"command": "sudo -E flatpak-builder build_flatpak  io.github.glaumar.v2raya_flatpak.yml --force-clean --install",
+		// 	"presentation": {
+		// 		"echo": true,
+		// 		"reveal": "always",
+		// 		"focus": true,
+		// 		"panel": "shared"
+		// 	},
+		// 	"group": "build"
+		// },
 		{
 			"type": "shell",
 			"label": "Flatpak Export",
-			"command": "flatpak build-export export build_flatpak && flatpak build-bundle export v2raya-deck.flatpak io.github.glaumar.v2raya-deck",
+			"command": "flatpak build-export export build_flatpak && flatpak build-bundle export v2raya_flatpak.flatpak io.github.glaumar.v2raya_flatpak",
 			"group": "none",
 			"dependsOn": "Flatpak Build",
 			"problemMatcher": []
@@ -24,7 +30,7 @@
 		{
 			"type": "shell",
 			"label": "Flatpak Shell",
-			"command": "flatpak-builder --run build_flatpak io.github.glaumar.v2raya-deck.yml sh",
+			"command": "flatpak-builder --run build_flatpak io.github.glaumar.v2raya_flatpak.yml sh",
 			"group": "none",
 			// "dependsOn": "Flatpak Build",
 			"problemMatcher": []

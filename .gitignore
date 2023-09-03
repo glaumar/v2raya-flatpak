@@ -1,3 +1,6 @@
-v2raya.flatpak
+*.flatpak
 .flatpak-builder/
 export/
+v2raya-deck.flatpak
+io.github.glaumar.v2raya_flatpak
+v2raya-deck.flatpak
