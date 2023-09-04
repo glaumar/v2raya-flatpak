@@ -18,7 +18,7 @@ SteamDeck 每次开机后切换到桌面模式，点击应用图标启动（需�
 
 **注意：如果你设置了开机自启，在卸载 v2raya-flatpak 前最好执行一次移除操作**
 
-# 为什么不上传到 Flatpahub ？
+# 为什么不上传到 Flathub ？
 
 1. 非v2rayA官方项目，不保证持续更新；
 2. flatpak 设计上不适合打包系统后台服务，打包成 flatpak 格式只是为了方便 SteamDeck 使用。
