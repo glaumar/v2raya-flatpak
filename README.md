@@ -8,6 +8,9 @@ v2rayA flatpak 格式安装包(非官方)，可下载到 SteamDeck 安装使用�
 ## 确保你知道自己的密码
 如果你没设置过自己的密码，打开终端执行 `passwd` 设置密码。
 
+## 安装
+从 [releases](https://github.com/glaumar/v2raya-flatpak/releases) 界面下载最新安装包，双击安装。
+
 ## 手动启动
 SteamDeck 每次开机后切换到桌面模式，点击应用图标启动（需要输入密码）。程序会在后台运行，启动完成或多次启动，会自动打开浏览器并访问 [localhost:2017](http://localhost:2017)。
 
