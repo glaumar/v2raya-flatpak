@@ -11,7 +11,7 @@ jobs:
     name: Flatter
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/andyholmes/flatter/kde:5.15-22.08
+      image: ghcr.io/andyholmes/flatter/freedesktop:22.08
       options: --privileged
 
     # strategy:
