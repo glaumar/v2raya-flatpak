@@ -51,15 +51,7 @@ jobs:
         uses: andyholmes/flatter@main
         with:
           files: |
-            io.github.glaumar.v2raya_flatpak.desktop
             io.github.glaumar.v2raya_flatpak.metainfo.xml
-            io.github.glaumar.v2raya_flatpak.yml
-            iproute2.yml
-            iptables.yml
-            v2ray-core.yml
-            create-v2raya-service.sh
-            remove-v2raya-service.sh
-            run-v2raya.sh
           arch: x86_64
           # gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-bundles: true
