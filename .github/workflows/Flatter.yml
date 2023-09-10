@@ -51,7 +51,7 @@ jobs:
         uses: andyholmes/flatter@main
         with:
           files: |
-            io.github.glaumar.v2raya_flatpak.metainfo.xml
+            io.github.glaumar.v2raya_flatpak.yml
           arch: x86_64
           # gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-bundles: true
