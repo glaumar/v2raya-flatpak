@@ -13,34 +13,19 @@ jobs:
     container:
       image: ghcr.io/andyholmes/flatter/freedesktop:22.08
       options: --privileged
-
-    # strategy:
-    #   matrix:
-    #     arch: [x86_64]
-    #   fail-fast: false
-    #   # Only one job at a time can use the shared repository cache
-    #   max-parallel: 1
-
+      
     steps:
       # Checkout a repository with Flatpak manifests
       - name: Checkout
         uses: actions/checkout@v3
 
-      # See "Multiple Architectures" below
-      # - name: Setup QEMU
-      #   if: ${{ matrix.arch == 'aarch64' }}
-      #   id: qemu
-      #   uses: docker/setup-qemu-action@v2
-      #   with:
-      #     platforms: arm64
-
       # See "GPG Signing" below
-      # - name: Setup GPG
-      #   id: gpg
-      #   uses: crazy-max/ghaction-import-gpg@v5
-      #   with:
-      #     gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
-      #     passphrase: ${{ secrets.GPG_PASSPHRASE }}
+      - name: Setup GPG
+        id: gpg
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
+          passphrase: ${{ secrets.GPG_PASSPHRASE }}
 
       # Generate a CNAME file on-the-fly for a configured host
       - name: Generate CNAME
@@ -58,7 +43,7 @@ jobs:
           files: |
             io.github.glaumar.v2raya_flatpak.yml
           arch: x86_64
-          # gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
+          gpg-sign: ${{ steps.gpg.outputs.fingerprint }}
           upload-bundles: true
           upload-pages-artifact: true
           upload-pages-includes: |
