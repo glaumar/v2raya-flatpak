@@ -29,8 +29,12 @@ jobs:
         with:
           repository: glaumar/v2raya-flatpak
 
-      - name: Create new tag
+      - name: update version
         if: ${{ steps.v2raya.outputs.release }} != ${{ steps.v2raya_flatpak.outputs.release }}
         run: |
-          echo ${{ steps.v2raya.outputs.release }}
-          echo ${{ steps.v2raya_flatpak.outputs.release }}
+          sed -i "{s/${{ steps.v2raya_flatpak.outputs.release }}.tar.gz/${{ steps.v2raya.outputs.release }}.tar.gz/g}" v2raya.yml
+          NEW_URL=$(grep -Po "(https://.*${{ steps.v2raya.outputs.release }}.tar.gz)$" v2raya.yml)
+          SHA256SUM=$(curl -sL ${NEW_URL} | sha256sum | cut -d ' ' -f1)
+          sed -r -i "s/sha256: .*$/sha256: ${SHA256SUM}/g" v2raya.yml
+          sed -i "/<releases>/a\ \ \ \ <release date=\"$(date +%Y-%m-%d)\" version=\"${{ steps.v2raya.outputs.release }}\" />" io.github.glaumar.v2raya_flatpak.metainfo.xml
+
