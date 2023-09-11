@@ -7,14 +7,10 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   update:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
@@ -35,6 +31,14 @@ jobs:
           sed -i "{s/${{ steps.v2raya_flatpak.outputs.release }}.tar.gz/${{ steps.v2raya.outputs.release }}.tar.gz/g}" v2raya.yml
           NEW_URL=$(grep -Po "(https://.*${{ steps.v2raya.outputs.release }}.tar.gz)$" v2raya.yml)
           SHA256SUM=$(curl -sL ${NEW_URL} | sha256sum | cut -d ' ' -f1)
+          [ "${SHA256SUM} = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" ] && exit 1
           sed -r -i "s/sha256: .*$/sha256: ${SHA256SUM}/g" v2raya.yml
           sed -i "/<releases>/a\ \ \ \ <release date=\"$(date +%Y-%m-%d)\" version=\"${{ steps.v2raya.outputs.release }}\" />" io.github.glaumar.v2raya_flatpak.metainfo.xml
-
+      
+      - name: add,commit and push
+        uses: EndBug/add-and-commit@v9
+        with:
+          add: 'io.github.glaumar.v2raya_flatpak.metainfo.xml v2raya.yml'
+          message: 'Update to ${{ steps.v2raya.outputs.release }} (from GitHub Actions update_v2raya)'
+          tag: ${{ steps.v2raya.outputs.release }}
+          push: true
