@@ -1,9 +1,9 @@
 name: Flatter
 
 on:
-  # Rebuild once a day
-  schedule:
-    - cron: "0 0 * * *"
+  push:
+    tags:
+      - "v*.*.*"
   workflow_dispatch:
 
 jobs:
@@ -48,8 +48,12 @@ jobs:
           upload-pages-artifact: true
           upload-pages-includes: |
             CNAME
-            default.css
-            index.html
+
+      - name: Release
+        uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
+        with:
+          files: io.github.glaumar.v2raya_flatpak-x86_64.zip
 
   deploy:
     name: Deploy
