@@ -35,10 +35,13 @@ jobs:
           sed -r -i "s/sha256: .*$/sha256: ${SHA256SUM}/g" v2raya.yml
           sed -i "/<releases>/a\ \ \ \ <release date=\"$(date +%Y-%m-%d)\" version=\"${{ steps.v2raya.outputs.release }}\" />" io.github.glaumar.v2raya_flatpak.metainfo.xml
       
-      - name: add,commit and push
+      - name: Push and Create new tag
+        if: ${{ steps.v2raya.outputs.release }} != ${{ steps.v2raya_flatpak.outputs.release }}
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'io.github.glaumar.v2raya_flatpak.metainfo.xml v2raya.yml'
+          add: |
+            io.github.glaumar.v2raya_flatpak.metainfo.xml 
+            v2raya.yml
           message: 'Update to ${{ steps.v2raya.outputs.release }} (from GitHub Actions update_v2raya)'
           tag: ${{ steps.v2raya.outputs.release }}
           push: true
