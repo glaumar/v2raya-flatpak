@@ -1,0 +1,13 @@
+name: v2raya
+buildsystem: simple
+build-commands:
+  - sh build.sh
+  - install -Dm 755 v2raya ${FLATPAK_DEST}/bin/v2raya
+  - install -Dm 644 gui/public/img/icons/android-chrome-512x512.png ${FLATPAK_DEST}/share/icons/hicolor/512x512/apps/io.github.glaumar.v2raya_flatpak.png
+  - install -Dm 644 gui/public/img/icons/android-chrome-192x192.png ${FLATPAK_DEST}/share/icons/hicolor/192x192/apps/io.github.glaumar.v2raya_flatpak.png
+  - install -Dm 644 gui/public/img/icons/favicon-32x32.png ${FLATPAK_DEST}/share/icons/hicolor/32x32/apps/io.github.glaumar.v2raya_flatpak.png
+  - install -Dm 644 gui/public/img/icons/favicon-16x16.png ${FLATPAK_DEST}/share/icons/hicolor/16x16/apps/io.github.glaumar.v2raya_flatpak.png
+sources:
+  - type: archive
+    url: https://github.com/v2rayA/v2rayA/archive/refs/tags/v2.2.3.tar.gz
+    sha256: 44f6d1f6ed7a03c1ec928b6551c8544463491c9fc53142f57aabbc534f104e56
