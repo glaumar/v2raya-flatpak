@@ -31,7 +31,7 @@ jobs:
           sed -i "{s/${{ steps.v2raya_flatpak.outputs.release }}.tar.gz/${{ steps.v2raya.outputs.release }}.tar.gz/g}" v2raya.yml
           NEW_URL=$(grep -Po "(https://.*${{ steps.v2raya.outputs.release }}.tar.gz)$" v2raya.yml)
           SHA256SUM=$(curl -sL ${NEW_URL} | sha256sum | cut -d ' ' -f1)
-          [ "${SHA256SUM} = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" ] && exit 1
+          [ "${SHA256SUM}" = "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855" ] && exit 1
           sed -r -i "s/sha256: .*$/sha256: ${SHA256SUM}/g" v2raya.yml
           sed -i "/<releases>/a\ \ \ \ <release date=\"$(date +%Y-%m-%d)\" version=\"${{ steps.v2raya.outputs.release }}\" />" io.github.glaumar.v2raya_flatpak.metainfo.xml
       
