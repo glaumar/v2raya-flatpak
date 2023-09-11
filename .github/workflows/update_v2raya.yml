@@ -23,12 +23,12 @@ jobs:
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: v2rayA/v2rayA
-          
+
       - id: v2raya_flatpak
         uses: pozetroninc/github-action-get-latest-release@master
         with:
           repository: glaumar/v2raya-flatpak
-     
+
       - name: Create new tag
         if: ${{ steps.v2raya.outputs.release }} != ${{ steps.v2raya_flatpak.outputs.release }}
         run: |

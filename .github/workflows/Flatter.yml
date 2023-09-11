@@ -13,7 +13,7 @@ jobs:
     container:
       image: ghcr.io/andyholmes/flatter/freedesktop:22.08
       options: --privileged
-      
+
     steps:
       # Checkout a repository with Flatpak manifests
       - name: Checkout
@@ -31,12 +31,12 @@ jobs:
       - name: Generate CNAME
         run: |
           echo "glaumar.github.io" > CNAME
-          
+
       - name: Install build dependencies
         run: |
           flatpak install org.freedesktop.Sdk.Extension.node18/x86_64/22.08 -y
           flatpak install org.freedesktop.Sdk.Extension.golang/x86_64/22.08 -y
-    
+
       - name: Build
         uses: andyholmes/flatter@main
         with:
