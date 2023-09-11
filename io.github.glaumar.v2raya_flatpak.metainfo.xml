@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
   <id>io.github.glaumar.v2raya_flatpak</id>
-
-  <url type="homepage">https://v2raya.org</url>
-  <name>v2raya-flatpak</name>
-  <summary>A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan and Pingtunnel
-    protocols</summary>
-
   <metadata_license>FSFAP</metadata_license>
   <project_license>AGPL-3.0-only</project_license>
-
+  <name>v2raya-flatpak</name>
+  <summary>A web GUI client of Project V which supports VMess, VLESS, SS, SSR, Trojan and Pingtunnel protocols</summary>
+  <developer_name>v2raya.org</developer_name>
+  <categories>
+    <category>Network</category>
+  </categories>
+  <keywords>
+    <keyword>Internet</keyword>
+    <keyword>VPN</keyword>
+    <keyword>Proxy</keyword>
+    <keyword>v2ray</keyword>
+    <keyword>v2raya</keyword>
+  </keywords>
   <description>
     <p>
-      v2rayA is a V2Ray client supporting global transparent proxy on Linux and system proxy on
+      V2rayA is a V2Ray client supporting global transparent proxy on Linux and system proxy on
       Windows and macOS, it is compatible with SS, SSR, Trojan(trojan-go), Tuic and Juicity
       protocols.
     </p>
     <p>
-      unofficial flatpak packaging by Glaumar (https://github.com/glaumar/v2raya-flatpak).
+      Unofficial flatpak packaging by Glaumar.
     </p>
   </description>
-
+  <launchable type="desktop-id">io.github.glaumar.v2raya_flatpak.desktop</launchable>
+  <url type="homepage">https://v2raya.org</url>
   <content_rating type="oars-1.1" />
   <releases>
     <release date="2023-09-03" version="2.2.3" />
   </releases>
-
   <launchable type="desktop-id">io.github.glaumar.v2raya_flatpak.desktop</launchable>
   <screenshots>
     <screenshot type="default">
