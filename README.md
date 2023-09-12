@@ -1,4 +1,5 @@
 # v2raya-flatpak
+[![Flatter](https://github.com/glaumar/v2raya-flatpak/actions/workflows/Flatter.yml/badge.svg)](https://github.com/glaumar/v2raya-flatpak/actions/workflows/Flatter.yml)
 
 v2rayA flatpak 格式安装包(非官方)，可下载到 SteamDeck 安装使用。
 
