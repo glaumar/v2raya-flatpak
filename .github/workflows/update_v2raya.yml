@@ -39,7 +39,7 @@ jobs:
           sed -i "/<releases>/a\ \ \ \ <release date=\"$(date +%Y-%m-%d)\" version=\"${{ steps.v2raya.outputs.release }}\" />" io.github.glaumar.v2raya_flatpak.metainfo.xml
       
       - name: Push and Create new tag
-        if: ${{ steps.v2raya.outputs.release }} != ${{ steps.v2raya_flatpak.outputs.release }}
+        if: steps.v2raya.outputs.release != steps.v2raya_flatpak.outputs.release
         uses: EndBug/add-and-commit@v9
         with:
           add: |
