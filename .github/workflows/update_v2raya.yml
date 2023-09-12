@@ -28,7 +28,7 @@ jobs:
           repository: glaumar/v2raya-flatpak
 
       - name: update version
-        if: ${{ steps.v2raya.outputs.release }} != ${{ steps.v2raya_flatpak.outputs.release }}
+        if: steps.v2raya.outputs.release != steps.v2raya_flatpak.outputs.release
         run: |
           grep "<release .*${{ steps.v2raya.outputs.release }}\" />" io.github.glaumar.v2raya_flatpak.metainfo.xml && exit 1
           sed -i "{s/${{ steps.v2raya_flatpak.outputs.release }}.tar.gz/${{ steps.v2raya.outputs.release }}.tar.gz/g}" v2raya.yml
@@ -39,7 +39,7 @@ jobs:
           sed -i "/<releases>/a\ \ \ \ <release date=\"$(date +%Y-%m-%d)\" version=\"${{ steps.v2raya.outputs.release }}\" />" io.github.glaumar.v2raya_flatpak.metainfo.xml
       
       - name: Push and Create new tag
-        if: ${{ steps.v2raya.outputs.release }} != ${{ steps.v2raya_flatpak.outputs.release }}
+        if: steps.v2raya.outputs.release != steps.v2raya_flatpak.outputs.release
         uses: EndBug/add-and-commit@v9
         with:
           add: |
