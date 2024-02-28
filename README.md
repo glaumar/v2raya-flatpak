@@ -25,10 +25,10 @@ flatpak update -y io.github.glaumar.v2raya_flatpak
 或者也可以在应用商店（Discover）中更新
 
 ## 手动启动
-SteamDeck 每次开机后切换到桌面模式，点击应用图标启动（需要输入密码）。程序会在后台运行，启动完成或多次启动，会自动打开浏览器并访问 [localhost:2017](http://localhost:2017)。
+SteamDeck 每次开机后切换到桌面模式，点击应用图标启动（需要root权限）。程序会在后台运行，启动完成或多次启动，会自动打开浏览器并访问 [localhost:2017](http://localhost:2017)。
 
-## 设置/移除开机自启
-在启动器里，右键点击应用图标，选择 Create/Remove v2raya-flatpak Service（需要输入密码）
+## 设置/移除开机自启和重置密码
+在启动器里，右键点击应用图标，选择对应功能选项即可（需要root权限）
 
 ![](./screenshots/screenshot1.png)
 
