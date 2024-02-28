@@ -4,7 +4,7 @@
 		{
 			"type": "shell",
 			"label": "Flatpak Build",
-			"command": "flatpak-builder build_flatpak  io.github.glaumar.v2raya_flatpak.yml --force-clean",
+			"command": "flatpak-builder build_flatpak --disable-rofiles-fuse io.github.glaumar.v2raya_flatpak.yml --force-clean",
 			"group": "build"
 		},
 		// {

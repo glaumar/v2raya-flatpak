@@ -1,5 +1,5 @@
 [Desktop Entry]
-Actions=create-systemd-service;remove-systemd-service
+Actions=create-systemd-service;remove-systemd-service;reset-password
 Version=1.0
 Terminal=false
 Type=Application
@@ -17,4 +17,9 @@ Icon=io.github.glaumar.v2raya_flatpak
 [Desktop Action remove-systemd-service]
 Name=Remove v2raya-flatpak Service
 Exec=remove-v2raya-service.sh
+Icon=io.github.glaumar.v2raya_flatpak
+
+[Desktop Action reset-password]
+Name=Reset password
+Exec=reset-password.sh
 Icon=io.github.glaumar.v2raya_flatpak
