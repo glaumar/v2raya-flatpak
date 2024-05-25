@@ -1,3 +1,4 @@
+⚠️新版 flatpak 即使以 root 身份启动应用，在沙箱内也无法执行特权命令，所以本项目已经没有意义了，不会再更新了（2024-05-25）
 # v2raya-flatpak
 [![Flatter](https://github.com/glaumar/v2raya-flatpak/actions/workflows/Flatter.yml/badge.svg)](https://github.com/glaumar/v2raya-flatpak/actions/workflows/Flatter.yml)
 
