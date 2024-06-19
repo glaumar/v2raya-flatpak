@@ -9,5 +9,5 @@ build-commands:
   - install -Dm 644 gui/public/img/icons/favicon-16x16.png ${FLATPAK_DEST}/share/icons/hicolor/16x16/apps/io.github.glaumar.v2raya_flatpak.png
 sources:
   - type: archive
-    url: https://github.com/v2rayA/v2rayA/archive/refs/tags/v2.2.5.1.tar.gz
-    sha256: 1935665d17e2bf2de7d3ca8a628e8c59d9ba934478a01080d68cdfe698481d3f
+    url: https://github.com/v2rayA/v2rayA/archive/refs/tags/v2.2.5.2.tar.gz
+    sha256: 3d298b3e8d1803d691da943fe1cee1e4bf8f9444ed74cd4cf8b0968d0143aa64
