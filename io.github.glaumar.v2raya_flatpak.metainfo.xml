@@ -30,6 +30,7 @@
   <url type="homepage">https://v2raya.org</url>
   <content_rating type="oars-1.1" />
   <releases>
+    <release date="2024-06-20" version="v2.2.5.5" />
     <release date="2024-06-19" version="v2.2.5.2" />
     <release date="2024-03-03" version="v2.2.5.1" />
     <release date="2024-03-02" version="v2.2.5" />
